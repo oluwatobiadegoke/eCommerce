@@ -266,6 +266,13 @@
     hoist-non-react-statics "^3.3.0"
     redux "^4.0.0"
 
+"@types/react-slick@^0.23.5":
+  version "0.23.5"
+  resolved "https://registry.yarnpkg.com/@types/react-slick/-/react-slick-0.23.5.tgz#e55fdc79bf19022ef77a6f22e9d64fd0f7463cc4"
+  integrity sha512-dQ/HwsLpnWXD5d+52WwXIQTfNCRpgd+0CKb+aA8g2CaIpA9T9COdjVYb9KI40Osb4rIgqR7u2AqtL2/HGbBMpg==
+  dependencies:
+    "@types/react" "*"
+
 "@types/react@*", "@types/react@17.0.27":
   version "17.0.27"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-17.0.27.tgz#6498ed9b3ad117e818deb5525fa1946c09f2e0e6"
@@ -2978,6 +2985,11 @@ react-is@^16.13.1, react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
+
+react-multi-carousel@^2.6.5:
+  version "2.6.5"
+  resolved "https://registry.yarnpkg.com/react-multi-carousel/-/react-multi-carousel-2.6.5.tgz#faeceb697b138c7a1c403c58ddc5f33cfc19b3f2"
+  integrity sha512-i5iuAm5XRT/h7uBL9/pGWeRsQXzqvjBrPVP1sobKgDKEvfZuKFpYp/alaQhTRM56Jtkb8jZpSqLn52Ku6jJbDg==
 
 react-redux@^7.2.5:
   version "7.2.5"
