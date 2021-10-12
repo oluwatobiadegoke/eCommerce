@@ -3,7 +3,7 @@ import { RiSearch2Line } from "react-icons/ri";
 
 const Navigator: React.FC = () => {
   return (
-    <nav className="flex justify-between items-center h-20 px-24">
+    <nav className="sticky shadow flex justify-between items-center h-20 px-24">
       <div className="flex-1">
         <div className="flex flex-1 items-center gap-2 hover:text-orange-500 transition-all cursor-pointer">
           <VscMenu />
@@ -14,7 +14,7 @@ const Navigator: React.FC = () => {
         Oja
       </p>
       <div className="flex items-center justify-between flex-1 font-neut">
-        <div className="group flex flex-col gap-1 items-center">
+        <div className="group flex flex-col hover:gap-1 items-center">
           <div className="flex items-center gap-2 rounded cursor-pointer">
             <RiSearch2Line />
             <p>SEARCH</p>

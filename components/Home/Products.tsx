@@ -1,8 +1,7 @@
-import Image from "next/image";
-import StarRating from "./StarRating";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import { BsCart } from "react-icons/bs";
+
+import SingleProduct from "../General/SingleProduct";
 
 interface IProps {
   products: [];
@@ -47,26 +46,14 @@ const Products: React.FC<IProps> = ({ products }) => {
         {products.map((product) => {
           const { id, image, price, rating, title } = product;
           return (
-            <div
+            <SingleProduct
               key={id}
-              className="relative bg-primary-100 p-2 mx-4 h-full flex flex-col"
-            >
-              <div className="w-full relative rounded overflow-x-hidden">
-                <Image
-                  src={image}
-                  width={300}
-                  height={350}
-                  layout="responsive"
-                  alt={title}
-                ></Image>
-              </div>
-              <p className="font-neut my-2">{title}</p>
-              <p className="font-secondary my-2">${price}</p>
-              <StarRating rating={rating} />
-              <button className="absolute top-2 right-2 p-1 bg-primary-400 rounded outline-none cursor-pointer hover:bg-opacity-50 transition-all">
-                <BsCart className="text-2xl" />
-              </button>
-            </div>
+              id={id}
+              image={image}
+              price={price}
+              rating={rating}
+              title={title}
+            />
           );
         })}
       </Carousel>

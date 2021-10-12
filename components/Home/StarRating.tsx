@@ -11,7 +11,7 @@ const StarRating: React.FC<IProps> = ({ rating }) => {
   const [starRating, setStarRating] = useState<number>(rating.rate);
 
   return (
-    <div className="flex items-center justify-start gap-1">
+    <div className="flex items-center justify-start gap-1 mx-4">
       {Array(5)
         .fill(0)
         .map((_, index) => (

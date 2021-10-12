@@ -8,6 +8,9 @@ module.exports = {
       neut: "Abril Fatface",
     },
     extend: {
+      width: {
+        w: "1px",
+      },
       colors: {
         primary: {
           100: "#fffbf7",
