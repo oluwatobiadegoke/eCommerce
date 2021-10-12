@@ -1,10 +1,12 @@
+import Cart from "../General/Cart/Cart";
 import Navigator from "../General/Navigator";
 
 const Layout: React.FC = ({ children }) => {
   return (
-    <main className="min-h-screen bg-primary-100">
+    <main className="relative min-h-screen bg-primary-100">
       <Navigator />
       {children}
+      <Cart />
     </main>
   );
 };

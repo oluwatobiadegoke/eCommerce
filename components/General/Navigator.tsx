@@ -1,7 +1,11 @@
 import { VscMenu } from "react-icons/vsc";
 import { RiSearch2Line } from "react-icons/ri";
 
+import { useGlobalAppContext } from "../../state/context/AppContext";
+
 const Navigator: React.FC = () => {
+  const appContext = useGlobalAppContext();
+
   return (
     <nav className="sticky shadow flex justify-between items-center h-20 px-24">
       <div className="flex-1">
@@ -21,7 +25,10 @@ const Navigator: React.FC = () => {
           </div>
           <div className="h-0 group-hover:h-2 w-0 group-hover:w-full bg-orange-500 rounded-full transition-all"></div>
         </div>
-        <div className="flex items-center justify-around gap-2 font-secondary">
+        <div
+          className="flex items-center justify-around gap-2 font-secondary"
+          onClick={() => appContext?.setOpenCart(true)}
+        >
           <p>CART</p>
           <p>0</p>
         </div>
