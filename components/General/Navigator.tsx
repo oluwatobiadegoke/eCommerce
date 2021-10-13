@@ -1,11 +1,25 @@
+import { useEffect } from "react";
 import { VscMenu } from "react-icons/vsc";
 import { RiSearch2Line } from "react-icons/ri";
 
-import { useGlobalAppContext } from "../../state/context/AppContext";
+import { useAppDispatch, useAppSelector } from "../../state/redux/redux-hooks";
+import { open, close, totals } from "../../state/redux/reduxSlices/cartSlice";
 
 const Navigator: React.FC = () => {
-  const appContext = useGlobalAppContext();
+  const dispatch = useAppDispatch();
+  const { total, cartOpen, cart } = useAppSelector((state) => state.cart);
 
+  const handleCartToggle = () => {
+    if (cartOpen) {
+      dispatch(close);
+    } else {
+      dispatch(open);
+    }
+  };
+
+  useEffect(() => {
+    dispatch(totals);
+  }, [cart]);
   return (
     <nav className="sticky shadow flex justify-between items-center h-20 px-24">
       <div className="flex-1">
@@ -27,10 +41,10 @@ const Navigator: React.FC = () => {
         </div>
         <div
           className="flex items-center justify-around gap-2 font-secondary"
-          onClick={() => appContext?.setOpenCart(true)}
+          onClick={() => handleCartToggle()}
         >
           <p>CART</p>
-          <p>0</p>
+          <p>{total}</p>
         </div>
       </div>
     </nav>

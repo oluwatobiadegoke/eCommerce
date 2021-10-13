@@ -1,16 +1,19 @@
 import Image from "next/image";
-import StarRating from "../Home/StarRating";
 import { BsCart } from "react-icons/bs";
 import Link from "next/link";
 
+import StarRating from "../Home/StarRating";
+import { useAppDispatch } from "../../state/redux/redux-hooks";
+import { addItem } from "../../state/redux/reduxSlices/cartSlice";
 export interface IProps {
-  id: string;
+  id: number;
   image: string;
   price: number;
   rating: {
     rate: number;
   };
   title: string;
+  category: string;
 }
 
 const SingleProduct: React.FC<IProps> = ({
@@ -19,7 +22,10 @@ const SingleProduct: React.FC<IProps> = ({
   price,
   rating,
   title,
+  category,
 }) => {
+  const dispatch = useAppDispatch();
+
   return (
     <div
       key={id}
@@ -41,7 +47,12 @@ const SingleProduct: React.FC<IProps> = ({
         </a>
       </Link>
       <StarRating rating={rating} />
-      <button className="absolute top-2 right-2 p-1 bg-primary-400 rounded outline-none cursor-pointer hover:bg-opacity-50 transition-all">
+      <button
+        onClick={() =>
+          dispatch(addItem({ id, price, title, image, amount: 1, category }))
+        }
+        className="absolute top-2 right-2 p-1 bg-primary-400 rounded outline-none cursor-pointer hover:bg-opacity-50 transition-all"
+      >
         <BsCart className="text-2xl" />
       </button>
     </div>

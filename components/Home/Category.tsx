@@ -10,11 +10,12 @@ interface IProps {
 }
 
 interface IProduct {
-  id: string;
+  id: number;
   image: string;
   price: number;
   rating: { rate: number };
   title: string;
+  category: string;
 }
 
 const responsive = {
@@ -86,7 +87,8 @@ const Category: React.FC<IProps> = ({ categories, products }) => {
           itemClass="carousel-item-margin-40-px"
         >
           {filteredProducts.map((product: any) => {
-            const { id, image, price, rating, title }: IProduct = product;
+            const { id, image, price, rating, title, category }: IProduct =
+              product;
             return (
               <SingleProduct
                 key={id}
@@ -95,6 +97,7 @@ const Category: React.FC<IProps> = ({ categories, products }) => {
                 price={price}
                 rating={rating}
                 title={title}
+                category={category}
               />
             );
           })}

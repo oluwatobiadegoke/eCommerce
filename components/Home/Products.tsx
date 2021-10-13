@@ -44,7 +44,7 @@ const Products: React.FC<IProps> = ({ products }) => {
         itemClass="carousel-item-margin-40-px"
       >
         {products.map((product) => {
-          const { id, image, price, rating, title } = product;
+          const { id, image, price, rating, title, category } = product;
           return (
             <SingleProduct
               key={id}
@@ -53,6 +53,7 @@ const Products: React.FC<IProps> = ({ products }) => {
               price={price}
               rating={rating}
               title={title}
+              category={category}
             />
           );
         })}
