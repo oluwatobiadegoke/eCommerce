@@ -7,18 +7,18 @@ import { open, close, totals } from "../../state/redux/reduxSlices/cartSlice";
 
 const Navigator: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { total, cartOpen, cart } = useAppSelector((state) => state.cart);
+  const { amount, cartOpen, cart } = useAppSelector((state) => state.cart);
 
   const handleCartToggle = () => {
     if (cartOpen) {
-      dispatch(close);
+      dispatch(close());
     } else {
-      dispatch(open);
+      dispatch(open());
     }
   };
 
   useEffect(() => {
-    dispatch(totals);
+    dispatch(totals());
   }, [cart]);
   return (
     <nav className="sticky shadow flex justify-between items-center h-20 px-24">
@@ -44,7 +44,7 @@ const Navigator: React.FC = () => {
           onClick={() => handleCartToggle()}
         >
           <p>CART</p>
-          <p>{total}</p>
+          <p>{amount}</p>
         </div>
       </div>
     </nav>

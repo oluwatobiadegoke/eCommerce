@@ -16,7 +16,7 @@ interface CartState {
 }
 
 const initialState: CartState = {
-  cartOpen: false,
+  cartOpen: true,
   total: 0,
   amount: 0,
   cart: items,
@@ -49,34 +49,22 @@ export const cartSlice = createSlice({
       }>
     ) => {
       const isAlreadyInCart = state.cart.find((cart) => cart.id === payload.id);
-      if (isAlreadyInCart) {
-        isAlreadyInCart.amount + 1;
-      } else {
-        state.cart.push(payload);
-      }
+      state.cart.push(payload);
     },
     increase: (state, { payload }: PayloadAction<{ id: number }>) => {
-      // let items = state.cart.map(cartItem => {
-      //   if(cartItem.id === payload.id) {
-      //     return {...cartItem, amount: cartItem.amount + 1}
-      //   }
-      //   return cartItem
-      // })
-      // state.cart = items;
-      const itemToIncrease = state.cart.find((cart) => cart.id === payload.id);
-      if (itemToIncrease) {
-        itemToIncrease.amount = +1;
-      }
+      let items = state.cart.map((cartItem) => {
+        if (cartItem.id === payload.id) {
+          return { ...cartItem, amount: cartItem.amount + 1 };
+        }
+        return cartItem;
+      });
+      state.cart = items;
     },
     decrease: (state, { payload }: PayloadAction<{ id: number }>) => {
-      // const itemToIncrease = state.cart.find((cart) => cart.id === payload.id);
-      // if (itemToIncrease) {
-      //   itemToIncrease.amount =- 1;
-      // }
       let items = state.cart
         .map((cartItem) => {
           if (cartItem.id === payload.id) {
-            return { ...cartItem, amount: cartItem.amount + 1 };
+            return { ...cartItem, amount: cartItem.amount - 1 };
           }
           return cartItem;
         })
@@ -100,8 +88,8 @@ export const cartSlice = createSlice({
           amount: 0,
         }
       );
-      state.total = total;
-      state.amount = parseFloat(amount.toFixed(2));
+      state.total = parseFloat(total.toFixed(2));
+      state.amount = amount;
     },
   },
 });

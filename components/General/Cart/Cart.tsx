@@ -12,10 +12,9 @@ import { close, totals } from "../../../state/redux/reduxSlices/cartSlice";
 
 const Cart: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { amount, cartOpen, cart } = useAppSelector((state) => state.cart);
-
+  const { total, cartOpen, cart } = useAppSelector((state) => state.cart);
   useEffect(() => {
-    dispatch(totals);
+    dispatch(totals());
   }, [cart]);
 
   return (
@@ -28,7 +27,7 @@ const Cart: React.FC = () => {
       <div className="flex justify-between items-center mb-8">
         <h2 className="text-black text-4xl font-neut">Shopping cart</h2>
         <button
-          onClick={() => dispatch(close)}
+          onClick={() => dispatch(close())}
           className="bg-black hover:bg-opacity-50 transition-all p-2 rounded"
         >
           <AiOutlineClose className="text-primary-500 text-xl" />
@@ -52,7 +51,7 @@ const Cart: React.FC = () => {
       </div>
       <div className="justify-self-end flex justify-between items-center">
         <button
-          onClick={() => dispatch(close)}
+          onClick={() => dispatch(close())}
           className="flex items-center justify-center py-1 pr-2 rounded gap-2 hover:bg-primary-200 transition-all"
         >
           <IoIosArrowBack />
@@ -61,7 +60,7 @@ const Cart: React.FC = () => {
         <div className="flex items-center justify-center gap-8 mb-4">
           <div className="flex items-end gap-4">
             <p className="font-primary text-primary-800">TOTAL</p>
-            <p className="text-3xl font-secondary">${amount}</p>
+            <p className="text-3xl font-secondary">${total}</p>
           </div>
           <button className="py-1 px-2 text-white bg-green-400 rounded cursor-point uppercase text-xl hover:bg-opacity-50 transition-all">
             <BsCartCheck />
