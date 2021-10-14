@@ -11,6 +11,10 @@ module.exports = {
       width: {
         w: "1px",
       },
+      height: {
+        h: "1px",
+        h2: "2px",
+      },
       colors: {
         primary: {
           100: "#fffbf7",

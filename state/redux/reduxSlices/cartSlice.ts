@@ -16,7 +16,7 @@ interface CartState {
 }
 
 const initialState: CartState = {
-  cartOpen: true,
+  cartOpen: false,
   total: 0,
   amount: 0,
   cart: items,
@@ -49,7 +49,12 @@ export const cartSlice = createSlice({
       }>
     ) => {
       const isAlreadyInCart = state.cart.find((cart) => cart.id === payload.id);
-      state.cart.push(payload);
+      if (isAlreadyInCart) {
+        isAlreadyInCart.amount = +1;
+      } else {
+        state.cart.push(payload);
+      }
+      state.cartOpen = true;
     },
     increase: (state, { payload }: PayloadAction<{ id: number }>) => {
       let items = state.cart.map((cartItem) => {

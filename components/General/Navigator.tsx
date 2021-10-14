@@ -21,7 +21,7 @@ const Navigator: React.FC = () => {
     dispatch(totals());
   }, [cart]);
   return (
-    <nav className="sticky shadow flex justify-between items-center h-20 px-24">
+    <nav className="sticky shadow-lg flex justify-between items-center h-20 px-24">
       <div className="flex-1">
         <div className="flex flex-1 items-center gap-2 hover:text-orange-500 transition-all cursor-pointer">
           <VscMenu />
@@ -37,14 +37,16 @@ const Navigator: React.FC = () => {
             <RiSearch2Line />
             <p>SEARCH</p>
           </div>
-          <div className="h-0 group-hover:h-2 w-0 group-hover:w-full bg-orange-500 rounded-full transition-all"></div>
+          <div className="h-0 group-hover:h-h2 w-0 group-hover:w-full bg-orange-500 rounded-full transition-all"></div>
         </div>
         <div
-          className="flex items-center justify-around gap-2 font-secondary"
+          className="relative group flex items-center justify-around gap-2 font-secondary cursor-pointer p-3"
           onClick={() => handleCartToggle()}
         >
-          <p>CART</p>
-          <p>{amount}</p>
+          <p className="group-hover:text-orange-500 transition-all">CART</p>
+          <p className="absolute top-0 right-0 font-bold text-white bg-orange-500">
+            {amount}
+          </p>
         </div>
       </div>
     </nav>

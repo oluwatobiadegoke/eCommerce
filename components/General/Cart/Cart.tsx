@@ -19,9 +19,9 @@ const Cart: React.FC = () => {
 
   return (
     <aside
-      className={`flex flex-col p-4 bg-primary-500 fixed top-0 bottom-0 ${
-        cartOpen ? "right-0" : "-right-full"
-      } h-screen w-2/4`}
+      className={`transform flex flex-col p-4 bg-primary-500 fixed top-0 bottom-0 right-0 ${
+        cartOpen ? "translate-x-0" : "translate-x-full"
+      } h-screen w-2/4 transition-all duration-1000 ease-in-out`}
       style={{ zIndex: 1001 }}
     >
       <div className="flex justify-between items-center mb-8">
