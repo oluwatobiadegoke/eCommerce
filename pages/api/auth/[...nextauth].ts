@@ -4,14 +4,6 @@ import Providers from "next-auth/providers";
 import { comparePassword } from "../../../utils/password";
 import { connectToDatabase } from "../../../utils/database";
 
-// interface Session {
-//     user: {
-//         email: string;
-//         password: string;
-//         userId: string;
-//     }
-// }
-
 export default NextAuth({
   session: {
     jwt: true,
@@ -24,7 +16,7 @@ export default NextAuth({
       return Promise.resolve(token);
     },
     session: async (session, user) => {
-      const sessionUser = session;
+      const sessionUser = session.user;
       if (sessionUser) sessionUser.userId = user.userId;
       return Promise.resolve(session);
     },
