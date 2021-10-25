@@ -44,7 +44,7 @@ const Navigator: React.FC = () => {
           onClick={() => handleCartToggle()}
         >
           <p className="group-hover:text-orange-500 transition-all">CART</p>
-          <p className="absolute top-0 right-0 font-bold text-white bg-orange-500">
+          <p className="absolute top-0 right-0 font-bold text-orange-500 ">
             {amount}
           </p>
         </div>

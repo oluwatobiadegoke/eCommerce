@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import Link from "next/link";
 import { AiOutlineClose } from "react-icons/ai";
 import { IoIosArrowBack } from "react-icons/io";
 import { BsCartCheck } from "react-icons/bs";
@@ -62,9 +63,11 @@ const Cart: React.FC = () => {
             <p className="font-primary text-primary-800">TOTAL</p>
             <p className="text-3xl font-secondary">${total}</p>
           </div>
-          <button className="py-1 px-2 text-white bg-green-400 rounded cursor-point uppercase text-xl hover:bg-opacity-50 transition-all">
-            <BsCartCheck />
-          </button>
+          <Link href="/checkout">
+            <a className="py-1 px-2 text-white bg-green-400 rounded cursor-point uppercase text-xl hover:bg-opacity-50 transition-all">
+              <BsCartCheck />
+            </a>
+          </Link>
         </div>
       </div>
     </aside>
