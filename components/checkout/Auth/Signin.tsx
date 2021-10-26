@@ -1,47 +1,30 @@
-import { Form, Input, Button } from "antd";
+// import { Button } from "antd";
+import { Formik, Form } from "formik";
 
-const Signin = () => {
-  const onFinish = (values: any) => {
-    console.log("Success:", values);
-  };
+import { MyInputArea, formSchema, initialValues } from "./AuthformUtils";
 
-  const onFinishFailed = (errorInfo: any) => {
-    console.log("Failed:", errorInfo);
-  };
-
+const LoginForm = () => {
   return (
-    <Form
-      name="basic"
-      labelCol={{ span: 8 }}
-      wrapperCol={{ span: 16 }}
-      initialValues={{ remember: true }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-      autoComplete="off"
+    <Formik
+      initialValues={initialValues}
+      validationSchema={formSchema}
+      onSubmit={() => console.log("")}
     >
-      <Form.Item
-        label="Username"
-        name="username"
-        rules={[{ required: true, message: "Please input your username!" }]}
-      >
-        <Input />
-      </Form.Item>
-
-      <Form.Item
-        label="Password"
-        name="password"
-        rules={[{ required: true, message: "Please input your password!" }]}
-      >
-        <Input.Password />
-      </Form.Item>
-
-      <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
-    </Form>
+      <Form>
+        <MyInputArea label="Password" name="password" type="password" />
+        <MyInputArea label="Email Address" name="email" type="text" />
+        <div>
+          <button
+            className="h-12 w-full mt-6 mb-4 flex items-center justify-center rounded text-white cursor-pointer"
+            style={{ backgroundColor: "#04C45C" }}
+            type="submit"
+          >
+            <span className="mr-2">Login Now</span>
+          </button>
+        </div>
+      </Form>
+    </Formik>
   );
 };
 
-export default Signin;
+export default LoginForm;

@@ -1,51 +1,16 @@
-import { useState } from "react";
+import { useSession } from "next-auth/client";
+import { useState, useEffect } from "react";
 import "antd/dist/antd.css";
 import { Steps, Button, message } from "antd";
-import { UserOutlined, LoadingOutlined } from "@ant-design/icons";
-import { FaRegAddressCard } from "react-icons/fa";
-import { MdPayment } from "react-icons/md";
-import { BsBagCheck } from "react-icons/bs";
-
-import Auth from "../../components/checkout/Auth/Auth";
-import ShippingAddress from "../../components/checkout/ShippingAddress/ShippingAddress";
-import PaymentMethod from "../../components/checkout/PaymentMethod/PaymentMethod";
-import Order from "../../components/checkout/Order/Order";
+import { LoadingOutlined } from "@ant-design/icons";
+import { steps } from "./Steps";
 
 const { Step } = Steps;
 
 const Checkout: React.FC = () => {
-  const [current, setCurrent] = useState(0);
+  const session = useSession();
 
-  const steps = [
-    {
-      id: 0,
-      title: "Login",
-      status: "process",
-      content: <Auth />,
-      icon: <LoadingOutlined />,
-    },
-    {
-      id: 1,
-      title: "Shipping Address",
-      status: "wait",
-      content: <ShippingAddress />,
-      icon: <FaRegAddressCard />,
-    },
-    {
-      id: 2,
-      title: "Payment Method",
-      status: "wait",
-      content: <PaymentMethod />,
-      icon: <MdPayment />,
-    },
-    {
-      id: 3,
-      title: "Order",
-      status: "wait",
-      content: <Order />,
-      icon: <BsBagCheck />,
-    },
-  ];
+  const [current, setCurrent] = useState(0);
 
   const next = () => {
     setCurrent(current + 1);
@@ -57,8 +22,25 @@ const Checkout: React.FC = () => {
 
   // finish process wait
 
+  useEffect(() => {
+    if (session) {
+      setCurrent(1);
+    }
+  }, [session]);
+
+  useEffect(() => {
+    steps.map((step) => {
+      if (step.id === current) {
+        step.status = "process";
+      }
+      if (step.id < current) {
+        step.status = "finish";
+      }
+    });
+  }, [current]);
+
   return (
-    <section className="px-24">
+    <section className="px-24 my-6">
       <Steps current={current}>
         {steps.map((step) => {
           const {
@@ -67,10 +49,17 @@ const Checkout: React.FC = () => {
             status,
             icon,
           }: { id: number; title: string; status: any; icon: any } = step;
-          return <Step key={id} title={title} status={status} icon={icon} />;
+          return (
+            <Step
+              key={id}
+              title={title}
+              status={status}
+              icon={current === id ? <LoadingOutlined /> : icon}
+            />
+          );
         })}
       </Steps>
-      <section>
+      <section className="mt-6">
         {steps[current].content}
         <div className="steps-action">
           {current < steps.length - 1 && (
